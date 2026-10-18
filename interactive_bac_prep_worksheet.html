@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tunisian Bac Preparation - English Interactive Worksheet</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .input-blank {
+            border-bottom: 2px solid #3b82f6;
+            background-color: #f8fafc;
+            padding: 2px 8px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            outline: none;
+            display: inline-block;
+            margin: 2px;
+            font-weight: 500;
+        }
+        .input-blank:focus {
+            background-color: #ffffff;
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.4);
+            border-bottom-color: #1d4ed8;
+        }
+        .correct-bg {
+            background-color: #d1fae5 !important;
+            border-color: #10b981 !important;
+            color: #065f46 !important;
+        }
+        .incorrect-bg {
+            background-color: #fee2e2 !important;
+            border-color: #ef4444 !important;
+            color: #991b1b !important;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 min-h-screen text-slate-800 flex flex-col justify-between">
+
+    <!-- Top Navigation Header -->
+    <header class="bg-indigo-900 text-white shadow-md sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center gap-3">
+            <div class="flex items-center space-x-3">
+                <i class="fa-solid fa-graduation-cap text-2xl text-amber-400"></i>
+                <div>
+                    <h1 class="font-bold text-lg leading-tight">Tunisian Bac English Prep</h1>
+                    <p class="text-xs text-indigo-200">Interactive Language Practice Worksheet</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-2">
+                <button id="publishBtn" onclick="publishWorksheet()" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-semibold px-4 py-2 rounded-lg text-sm flex items-center gap-2 transition shadow">
+                    <i class="fa-solid fa-cloud-arrow-up"></i> Save & Get Permanent Link
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Modal for Link Sharing -->
+    <div id="shareModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4">
+            <div class="flex justify-between items-center border-b pb-3">
+                <h3 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-link text-indigo-600"></i> Permanent Web Link
+                </h3>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 text-xl font-bold">&times;</button>
+            </div>
+            <p class="text-sm text-slate-600">Your interactive worksheet has been saved to the cloud! Share this link with your students:</p>
+            <div class="flex items-center gap-2 bg-slate-50 border rounded-lg p-2">
+                <input id="shareUrlInput" type="text" readonly class="w-full text-xs bg-transparent text-slate-700 outline-none font-mono">
+                <button onclick="copyShareLink()" class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold px-3 py-2 rounded flex items-center gap-1 transition">
+                    <i class="fa-solid fa-copy"></i> Copy
+                </button>
+            </div>
+            <div id="copyToast" class="text-xs text-emerald-600 font-semibold hidden text-center">
+                <i class="fa-solid fa-circle-check"></i> Link copied to clipboard!
+            </div>
+            <div class="pt-2 flex justify-end">
+                <button onclick="closeModal()" class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-semibold text-sm px-4 py-2 rounded-lg">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Container -->
+    <main class="max-w-4xl w-full mx-auto p-4 sm:p-6 my-6 bg-white shadow-xl rounded-2xl border border-slate-200 space-y-8">
+
+        <!-- Title Banner -->
+        <div class="bg-gradient-to-r from-indigo-50 to-blue-50 p-6 rounded-xl border border-indigo-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+            <div>
+                <span class="inline-block bg-indigo-100 text-indigo-800 text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wide mb-2">Language Assessment</span>
+                <h2 class="text-2xl font-bold text-indigo-950">Module Focus: Geography & Culture of the UK</h2>
+                <p class="text-sm text-slate-600 mt-1">Practice vocabulary, grammatical functions, and word derivatives following the Tunisian Bac exam standards.</p>
+            </div>
+            <div id="statusBadge" class="bg-white px-4 py-2 rounded-lg shadow-sm border border-slate-200 text-xs font-semibold text-slate-600 flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-amber-400 inline-block animate-pulse"></span> Ready for attempt
+            </div>
+        </div>
+
+        <!-- EXERCISE 1 -->
+        <section class="space-y-4">
+            <div class="border-b border-slate-200 pb-2 flex items-center justify-between">
+                <h3 class="font-bold text-lg text-slate-800 flex items-center gap-2">
+                    <span class="bg-indigo-600 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold">1</span>
+                    Fill in the Blanks with words from the list
+                </h3>
+                <span class="text-xs font-semibold text-indigo-600 bg-indigo-50 px-2 py-1 rounded">11 Marks</span>
+            </div>
+
+            <div class="bg-amber-50/70 border border-amber-200 rounded-xl p-4 text-center">
+                <p class="text-xs font-bold text-amber-900 uppercase tracking-wider mb-2">Word Bank</p>
+                <div class="flex flex-wrap justify-center gap-2 text-sm font-semibold text-amber-800">
+                    <span class="bg-white px-2.5 py-1 rounded-md border border-amber-200 shadow-sm">including</span>
+                    <span class="bg-white px-2.5 py-1 rounded-md border border-amber-200 shadow-sm">urban</span>
+                    <span class="bg-white px-2.5 py-1 rounded-md border border-amber-200 shadow-sm">wild</span>
+                    <span class="bg-white px-2.5 py-1 rounded-md border border-amber-200 shadow-sm">predominantly</span>
+                    <span class="bg-white px-2.5 py-1 rounded-md border border-amber-200 shadow-sm">southern</span>
+                    <span class="bg-white px-2.5 py-1 rounded-md border border-amber-200 shadow-sm">bordered</span>
+                    <span class="bg-white px-2.5 py-1 rounded-md border border-amber-200 shadow-sm">peak</span>
+                    <span class="bg-white px-2.5 py-1 rounded-md border border-amber-200 shadow-sm">inner</span>
+                    <span class="bg-white px-2.5 py-1 rounded-md border border-amber-200 shadow-sm">chief</span>
+                    <span class="bg-white px-2.5 py-1 rounded-md border border-amber-200 shadow-sm">mountainous</span>
+                    <span class="bg-white px-2.5 py-1 rounded-md border border-amber-200 shadow-sm">contains</span>
+                </div>
+            </div>
+
+            <div class="text-base text-slate-700 leading-relaxed bg-slate-50 p-5 rounded-xl border border-slate-200 space-y-3">
+                <p>
+                    Great Britain is comprised of three countries: Scotland, England, and Wales. It is 
+                    <input type="text" id="ex1_1" class="input-blank w-28 text-center" placeholder="..."> by the Atlantic Ocean, Irish Sea, North Sea, and the English Channel. England is 
+                    <input type="text" id="ex1_2" class="input-blank w-36 text-center" placeholder="..."> a lowland country, although there are upland regions in the north and southwest. England's 
+                    <input type="text" id="ex1_3" class="input-blank w-24 text-center" placeholder="..."> cities are London, Liverpool, Manchester and Birmingham. The major cities of Scotland are Edinburgh, Glasgow, Aberdeen and Dundee. Scotland 
+                    <input type="text" id="ex1_4" class="input-blank w-24 text-center" placeholder="..."> large areas of unspoilt and 
+                    <input type="text" id="ex1_5" class="input-blank w-20 text-center" placeholder="..."> landscape and the majority of Britain's highest mountains, 
+                    <input type="text" id="ex1_6" class="input-blank w-28 text-center" placeholder="..."> Ben Nevis, the highest 
+                    <input type="text" id="ex1_7" class="input-blank w-20 text-center" placeholder="..."> in Britain.
+                </p>
+                <p>
+                    Much of Wales is hilly or 
+                    <input type="text" id="ex1_8" class="input-blank w-32 text-center" placeholder="...">. Two thirds of the population of Wales live in the 
+                    <input type="text" id="ex1_9" class="input-blank w-20 text-center" placeholder="..."> valleys and lower-lying coastal areas. The chief 
+                    <input type="text" id="ex1_10" class="input-blank w-24 text-center" placeholder="..."> centres are Cardiff, Swansea and Newport in the 
+                    <input type="text" id="ex1_11" class="input-blank w-28 text-center" placeholder="...">, and Wrexham in the north.
+                </p>
+            </div>
+        </section>
+
+        <!-- EXERCISE 2 -->
+        <section class="space-y-4">
+            <div class="border-b border-slate-200 pb-2 flex items-center justify-between">
+                <h3 class="font-bold text-lg text-slate-800 flex items-center gap-2">
+                    <span class="bg-indigo-600 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold">2</span>
+                    Circle / Choose the Right Alternative
+                </h3>
+                <span class="text-xs font-semibold text-indigo-600 bg-indigo-50 px-2 py-1 rounded">8 Marks</span>
+            </div>
+
+            <div class="text-base text-slate-700 leading-relaxed bg-slate-50 p-5 rounded-xl border border-slate-200 space-y-3">
+                <p>
+                    Our Royal walk takes us through St James Park. It has an 
+                    <select id="ex2_1" class="input-blank font-medium bg-white text-indigo-900 cursor-pointer">
+                        <option value="">[ Choose option ]</option>
+                        <option value="eye's catching">eye's catching</option>
+                        <option value="eyes' catching">eyes' catching</option>
+                        <option value="eye-catching">eye-catching</option>
+                    </select> 
+                    view to the famous Mall where we 
+                    <select id="ex2_2" class="input-blank font-medium bg-white text-indigo-900 cursor-pointer">
+                        <option value="">[ Choose option ]</option>
+                        <option value="can">can</option>
+                        <option value="might">might</option>
+                        <option value="must">must</option>
+                    </select> 
+                    see the elegant regency-style Carlton House Terrace. We pass the 
+                    <select id="ex2_3" class="input-blank font-medium bg-white text-indigo-900 cursor-pointer">
+                        <option value="">[ Choose option ]</option>
+                        <option value="statuette">statuette</option>
+                        <option value="statue">statue</option>
+                        <option value="status">status</option>
+                    </select> 
+                    of King George VI and view Marlborough House, 
+                    <select id="ex2_4" class="input-blank font-medium bg-white text-indigo-900 cursor-pointer">
+                        <option value="">[ Choose option ]</option>
+                        <option value="original">original</option>
+                        <option value="originally">originally</option>
+                        <option value="originality">originality</option>
+                    </select> 
+                    the London home of the ancestors of Winston Churchill and 
+                    <select id="ex2_5" class="input-blank font-medium bg-white text-indigo-900 cursor-pointer">
+                        <option value="">[ Choose option ]</option>
+                        <option value="lately">lately</option>
+                        <option value="latest">latest</option>
+                        <option value="later">later</option>
+                    </select> 
+                    the residence of many heirs to the throne and widowed queens.
+                </p>
+                <p>
+                    Then comes Tudor St James' Palace, 
+                    <select id="ex2_6" class="input-blank font-medium bg-white text-indigo-900 cursor-pointer">
+                        <option value="">[ Choose option ]</option>
+                        <option value="built">built</option>
+                        <option value="building">building</option>
+                    </select> 
+                    for King Henry VIII in 1530s and now the London home of the Prince of Wales. Next 
+                    <select id="ex2_7" class="input-blank font-medium bg-white text-indigo-900 cursor-pointer">
+                        <option value="">[ Choose option ]</option>
+                        <option value="time">time</option>
+                        <option value="door">door</option>
+                        <option value="place">place</option>
+                    </select> 
+                    we see Clarence House, the 
+                    <select id="ex2_8" class="input-blank font-medium bg-white text-indigo-900 cursor-pointer">
+                        <option value="">[ Choose option ]</option>
+                        <option value="foremost">foremost</option>
+                        <option value="former">former</option>
+                        <option value="formal">formal</option>
+                    </select> 
+                    home of the late queen mother and the London residence of Prince Charles and his second wife.
+                </p>
+            </div>
+        </section>
+
+        <!-- EXERCISE 3 -->
+        <section class="space-y-4">
+            <div class="border-b border-slate-200 pb-2 flex items-center justify-between">
+                <h3 class="font-bold text-lg text-slate-800 flex items-center gap-2">
+                    <span class="bg-indigo-600 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold">3</span>
+                    Put Words / Adjectives in Parentheses in the Right Form
+                </h3>
+                <span class="text-xs font-semibold text-indigo-600 bg-indigo-50 px-2 py-1 rounded">8 Marks</span>
+            </div>
+
+            <div class="text-base text-slate-700 leading-relaxed bg-slate-50 p-5 rounded-xl border border-slate-200 space-y-3">
+                <p>
+                    Scotland is the UK's <strong>(northern)</strong> 
+                    <input type="text" id="ex3_1" class="input-blank w-36 text-center" placeholder="type form..."> country and has around 790 islands off its coast – 130 of which have people living on them. Scotland is well known for its attractive landscapes, beautiful beaches and lochs. It has a population of just over five million people. Over two million of these live in Glasgow and Edinburgh, the two <strong>(large)</strong> 
+                    <input type="text" id="ex3_2" class="input-blank w-28 text-center" placeholder="type form..."> cities there. Scotland also hosts one of the <strong>(big)</strong> 
+                    <input type="text" id="ex3_3" class="input-blank w-28 text-center" placeholder="type form..."> arts festivals in the world.
+                </p>
+                <p>
+                    Social life is becoming <strong>(varied)</strong> 
+                    <input type="text" id="ex3_4" class="input-blank w-36 text-center" placeholder="type form..."> than in the past with the main cities Glasgow and Edinburgh becoming <strong>(attractive)</strong> 
+                    <input type="text" id="ex3_5" class="input-blank w-40 text-center" placeholder="type form..."> and <strong>(welcoming)</strong> 
+                    <input type="text" id="ex3_6" class="input-blank w-40 text-center" placeholder="type form..."> than a decade ago.
+                </p>
+                <p>
+                    However, I do think that a lot of Scots are quite <strong>(with narrow minds)</strong> 
+                    <input type="text" id="ex3_7" class="input-blank w-40 text-center" placeholder="type form..."> and are very much 'home birds'. On the whole, Scots are very friendly and <strong>(generosity)</strong> 
+                    <input type="text" id="ex3_8" class="input-blank w-32 text-center" placeholder="type form...">.
+                </p>
+            </div>
+        </section>
+
+        <!-- Submit & Evaluation Section -->
+        <div class="pt-4 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <button onclick="checkWorksheet()" class="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-8 py-3.5 rounded-xl shadow-lg transition flex items-center justify-center gap-2">
+                <i class="fa-solid fa-spell-check"></i> Submit & Check Score
+            </button>
+            <div id="resultCard" class="hidden w-full sm:w-auto bg-slate-900 text-white px-6 py-3 rounded-xl flex items-center justify-between gap-6 shadow-md">
+                <div>
+                    <p class="text-xs text-slate-400 uppercase tracking-wide">Final Grade</p>
+                    <p id="gradeText" class="text-2xl font-bold text-emerald-400">0 / 27</p>
+                </div>
+                <div id="percentageBadge" class="bg-indigo-800 text-indigo-200 text-xs font-bold px-3 py-1.5 rounded-lg">
+                    0%
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 text-xs py-4 text-center">
+        <div class="max-w-5xl mx-auto px-4">
+            <p>Designed for Tunisian Secondary Education • Baccalaureate Exam Preparation</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK Modules -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Global Configuration & App Setup
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'bac-prep-worksheet';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' 
+            ? JSON.parse(__firebase_config) 
+            : { apiKey: "demo", authDomain: "demo.firebaseapp.com", projectId: "demo" };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        let currentUser = null;
+
+        // Initialize Authentication
+        async function initAuth() {
+            try {
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    const userCredential = await signInWithCustomToken(auth, __initial_auth_token);
+                    currentUser = userCredential.user;
+                } else {
+                    const userCredential = await signInAnonymously(auth);
+                    currentUser = userCredential.user;
+                }
+                
+                // Check URL for shared worksheet ID
+                const urlParams = new URLSearchParams(window.location.search);
+                const docId = urlParams.get('doc');
+                if (docId) {
+                    loadSavedAnswers(docId);
+                }
+            } catch (error) {
+                console.error("Authentication initialized in offline mode:", error);
+            }
+        }
+
+        initAuth();
+
+        // Answer Key Mapping
+        const answerKey = {
+            ex1_1: ["bordered"],
+            ex1_2: ["predominantly"],
+            ex1_3: ["chief"],
+            ex1_4: ["contains"],
+            ex1_5: ["wild"],
+            ex1_6: ["including"],
+            ex1_7: ["peak"],
+            ex1_8: ["mountainous"],
+            ex1_9: ["inner"],
+            ex1_10: ["urban"],
+            ex1_11: ["southern"],
+
+            ex2_1: ["eye-catching"],
+            ex2_2: ["can"],
+            ex2_3: ["statue"],
+            ex2_4: ["originally"],
+            ex2_5: ["later"],
+            ex2_6: ["built"],
+            ex2_7: ["place"],
+            ex2_8: ["former"],
+
+            ex3_1: ["northernmost", "northern"],
+            ex3_2: ["largest"],
+            ex3_3: ["biggest"],
+            ex3_4: ["more varied"],
+            ex3_5: ["more attractive"],
+            ex3_6: ["more welcoming"],
+            ex3_7: ["narrow-minded", "narrow minded"],
+            ex3_8: ["generous"]
+        };
+
+        // Check Worksheet Answers
+        window.checkWorksheet = function() {
+            let score = 0;
+            let total = Object.keys(answerKey).length;
+
+            for (let id in answerKey) {
+                const element = document.getElementById(id);
+                if (!element) continue;
+
+                const userVal = element.value.trim().toLowerCase();
+                const validOptions = answerKey[id].map(opt => opt.toLowerCase());
+
+                if (userVal !== "" && validOptions.includes(userVal)) {
+                    element.classList.remove('incorrect-bg');
+                    element.classList.add('correct-bg');
+                    score++;
+                } else {
+                    element.classList.remove('correct-bg');
+                    element.classList.add('incorrect-bg');
+                }
+            }
+
+            // Display Score Card
+            const resultCard = document.getElementById('resultCard');
+            const gradeText = document.getElementById('gradeText');
+            const percentageBadge = document.getElementById('percentageBadge');
+            const statusBadge = document.getElementById('statusBadge');
+
+            const percentage = Math.round((score / total) * 100);
+
+            gradeText.innerText = `${score} / ${total}`;
+            percentageBadge.innerText = `${percentage}%`;
+            resultCard.classList.remove('hidden');
+
+            statusBadge.innerHTML = `<span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span> Evaluated`;
+        };
+
+        // Publish Worksheet to Cloud
+        window.publishWorksheet = async function() {
+            const btn = document.getElementById('publishBtn');
+            btn.disabled = true;
+            btn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> Saving...`;
+
+            try {
+                // Collect current state
+                const userAnswers = {};
+                for (let id in answerKey) {
+                    const el = document.getElementById(id);
+                    if (el) userAnswers[id] = el.value;
+                }
+
+                const uniqueDocId = 'ws_' + Math.random().toString(36).substring(2, 10);
+                
+                if (currentUser) {
+                    const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'worksheets', uniqueDocId);
+                    await setDoc(docRef, {
+                        createdAt: new Date().toISOString(),
+                        answers: userAnswers
+                    });
+
+                    const currentUrl = window.location.href.split('?')[0];
+                    const shareableUrl = `${currentUrl}?doc=${uniqueDocId}`;
+
+                    document.getElementById('shareUrlInput').value = shareableUrl;
+                    document.getElementById('shareModal').classList.remove('hidden');
+                    document.getElementById('shareModal').classList.add('flex');
+                } else {
+                    alert("Sharing online requires an active session. Generating offline link...");
+                }
+            } catch (e) {
+                console.error("Error publishing worksheet:", e);
+                alert("Could not create permanent cloud link. You can still use the local worksheet!");
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = `<i class="fa-solid fa-cloud-arrow-up"></i> Save & Get Permanent Link`;
+            }
+        };
+
+        // Load Saved Answers from Cloud
+        async function loadSavedAnswers(docId) {
+            try {
+                const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'worksheets', docId);
+                const docSnap = await getDoc(docRef);
+
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    if (data.answers) {
+                        for (let id in data.answers) {
+                            const el = document.getElementById(id);
+                            if (el) el.value = data.answers[id];
+                        }
+                    }
+                }
+            } catch (e) {
+                console.error("Error loading shared answers:", e);
+            }
+        }
+
+        window.closeModal = function() {
+            document.getElementById('shareModal').classList.add('hidden');
+            document.getElementById('shareModal').classList.remove('flex');
+            document.getElementById('copyToast').classList.add('hidden');
+        };
+
+        window.copyShareLink = function() {
+            const copyText = document.getElementById("shareUrlInput");
+            copyText.select();
+            document.execCommand("copy");
+            document.getElementById('copyToast').classList.remove('hidden');
+        };
+    </script>
+</body>
+</html>
+```
+
+### Summary of How to Publish & Use as a Webpage:
+
+1. **Option 1: In the Editor Preview (Instant)**
+   - Click the **`Preview`** button in the code editor to launch and test this interactive app directly.
+
+2. **Option 2: Cloud Permanent Link (Built-in)**
+   - Click the **"Save & Get Permanent Link"** button in the top header. It automatically publishes your worksheet configuration to cloud storage and gives you a copyable permanent link to share with students.
+
+3. **Option 3: Free Hosting (Netlify, GitHub Pages, Vercel)**
+   - Copy the entire code block above and save it on your computer as **`index.html`**.
+   - Drag and drop the `index.html` file into **Netlify Drop** ([app.netlify.com/drop](https://app.netlify.com/drop)) or upload it to a **GitHub Repository** with Pages turned on for a completely custom domain or URL!
